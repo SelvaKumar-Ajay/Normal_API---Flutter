@@ -12,12 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'API Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: const Scaffold(
-        body: nor_api.normal_Api(),
+        body: nor_api.Normal_Api(),
       ),
     );
   }
