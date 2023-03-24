@@ -8,11 +8,12 @@ class Normal_Api extends StatefulWidget {
   const Normal_Api({super.key});
 
   @override
-  State<Normal_Api> createState() => _Normal_ApiState();
+  State<Normal_Api> createState() => Normal_ApiState();
 }
 
-class _Normal_ApiState extends State<Normal_Api> {
+class Normal_ApiState extends State<Normal_Api> {
   List products = [];
+  bool loading = true;
 
   getProduct() async {
     String url = 'https://api.escuelajs.co/api/v1/users';
@@ -21,6 +22,7 @@ class _Normal_ApiState extends State<Normal_Api> {
       setState(() {
         products = json.decode(responce.body);
       });
+      loading = false;
       // print(products);
     }
   }
@@ -36,17 +38,22 @@ class _Normal_ApiState extends State<Normal_Api> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: products.length,
-      itemBuilder: (context, index) => ListTile(
-        title: Text(
-          products[index]["name"],
-          style: style,
-        ),
-        leading: CircleAvatar(child: Image.network(products[index]["avatar"])),
-        subtitle: Text(products[index]["email"]),
-        trailing: Text(products[index]["id"].toString()),
-      ),
-    );
+    return loading == true
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : ListView.builder(
+            itemCount: products.length,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(
+                products[index]["name"],
+                style: style,
+              ),
+              leading:
+                  CircleAvatar(child: Image.network(products[index]["avatar"])),
+              subtitle: Text(products[index]["email"]),
+              trailing: Text(products[index]["id"].toString()),
+            ),
+          );
   }
 }

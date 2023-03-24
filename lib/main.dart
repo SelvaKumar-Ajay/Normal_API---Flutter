@@ -1,4 +1,4 @@
-import 'package:api_integrations/normal_api_call/normal_api.dart' as nor_api;
+import 'package:api_integrations/normal_api_call/normal_api.dart' as api;
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Scaffold(
-        body: nor_api.Normal_Api(),
+        body: api.Normal_Api(),
       ),
     );
   }
